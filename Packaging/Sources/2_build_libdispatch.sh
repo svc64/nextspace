@@ -2,6 +2,8 @@
 
 . ./versions.inc.sh
 
+git apply extra/libdispatch_no_werror.patch --directory libdispatch-${libdispatch_version}
+
 cd ./libdispatch-${libdispatch_version} || exit 1
 rm -R _build 2>/dev/null
 mkdir -p _build

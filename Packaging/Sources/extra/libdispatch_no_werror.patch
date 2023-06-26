@@ -1,0 +1,25 @@
+diff --git a/cmake/modules/DispatchCompilerWarnings.cmake b/cmake/modules/DispatchCompilerWarnings.cmake
+index d568c72..2d539c3 100644
+--- a/cmake/modules/DispatchCompilerWarnings.cmake
++++ b/cmake/modules/DispatchCompilerWarnings.cmake
+@@ -5,7 +5,6 @@ if("${CMAKE_C_SIMULATE_ID}" STREQUAL "MSVC")
+   endmacro()
+ else()
+   macro(dispatch_common_warnings)
+-    add_compile_options(-Werror)
+     add_compile_options(-Wall)
+     add_compile_options(-Wextra)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index f71b68f..22dcdf5 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -230,7 +230,7 @@ if("${CMAKE_C_SIMULATE_ID}" STREQUAL "MSVC")
+                          PRIVATE
+                            -Xclang -fblocks)
+ else()
+-  check_c_compiler_flag("-momit-leaf-frame-pointer -Werror -Wall -O3" C_SUPPORTS_OMIT_LEAF_FRAME_POINTER)
++  check_c_compiler_flag("-momit-leaf-frame-pointer -Wall -O3" C_SUPPORTS_OMIT_LEAF_FRAME_POINTER)
+   target_compile_options(dispatch PRIVATE -fblocks)
+   if (C_SUPPORTS_OMIT_LEAF_FRAME_POINTER)
+     target_compile_options(dispatch PRIVATE -momit-leaf-frame-pointer)
